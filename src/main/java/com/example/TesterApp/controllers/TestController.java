@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.TesterApp.customexceptions.BadRequestException;
 import com.example.TesterApp.dto.DataDTO;
 import com.example.TesterApp.models.TestModel;
 import com.example.TesterApp.service.TestServiceInterface;
@@ -34,6 +35,18 @@ public class TestController {
 	@GetMapping("/v1/user/{userId}/data")
 	public ResponseEntity<TestModel> getData(@PathVariable("userId") String userId, @RequestHeader("header") String head) throws Exception {
 		return new ResponseEntity<TestModel>(tst.getData(userId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/v1/user/{userId}/exception")
+	public ResponseEntity<TestModel> getException(@PathVariable("userId") String userId) throws Exception {
+		TestModel t=new TestModel();
+		t.setName((1/0)+"");
+		return new ResponseEntity<TestModel>(t, HttpStatus.OK);
+	}
+	
+	@GetMapping("/v1/user/{userId}/exception/custom")
+	public ResponseEntity<TestModel> getCustomException(@PathVariable("userId") String userId) throws Exception {
+		throw new BadRequestException("custom exception");
 	}
 
 }

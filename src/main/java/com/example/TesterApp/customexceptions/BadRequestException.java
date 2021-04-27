@@ -1,20 +1,13 @@
 package com.example.TesterApp.customexceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.example.alfred.exception.AspectException;
-
-public class BadRequestException extends AspectException {
-
+@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+public class BadRequestException extends Exception {
 
 	public BadRequestException(String message) {
 		super(message);
-	}
-
-	@Override
-	protected void setStatus() {
-		status = HttpStatus.BAD_REQUEST;
-
 	}
 
 }
