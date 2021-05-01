@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.TesterApp.customexceptions.BadRequestException;
 import com.example.TesterApp.dto.DataDTO;
@@ -21,9 +22,12 @@ import com.example.TesterApp.service.TestServiceInterface;
 @RestController
 @CrossOrigin(origins = "*")
 public class TestController {
-	
+
 	@Autowired
 	TestServiceInterface tst;
+
+	@Autowired
+	RestTemplate rest;
 
 	@PostMapping("/v1/user/{userId}/data/submit")
 	public ResponseEntity<String> postData(@Valid @RequestBody DataDTO requestBody,
@@ -33,17 +37,19 @@ public class TestController {
 	}
 
 	@GetMapping("/v1/user/{userId}/data")
-	public ResponseEntity<TestModel> getData(@PathVariable("userId") String userId, @RequestHeader("header") String head) throws Exception {
+	public ResponseEntity<TestModel> getData(@PathVariable("userId") String userId,
+			@RequestHeader("header") String head) throws Exception {
+		
 		return new ResponseEntity<TestModel>(tst.getData(userId), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/v1/user/{userId}/exception")
 	public ResponseEntity<TestModel> getException(@PathVariable("userId") String userId) throws Exception {
-		TestModel t=new TestModel();
-		t.setName((1/0)+"");
+		TestModel t = new TestModel();
+		t.setName((1 / 0) + "");
 		return new ResponseEntity<TestModel>(t, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/v1/user/{userId}/exception/custom")
 	public ResponseEntity<TestModel> getCustomException(@PathVariable("userId") String userId) throws Exception {
 		throw new BadRequestException("custom exception");

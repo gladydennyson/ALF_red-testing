@@ -16,7 +16,7 @@ public class TestService implements TestServiceInterface {
 
 	@Override
 	public TestModel getData(String name) throws Exception {
-		TestModel model=testRepo.findByName(name);
+		TestModel model=new TestModel();
 		return model;
 	}
 
