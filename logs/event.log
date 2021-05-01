@@ -1,0 +1,3 @@
+10:03:43.613 [http-nio-7002-exec-1] DEBUG eventLog - {"args":["akshay","123"],"method":"ResponseEntity com.example.TesterApp.controllers.TestController.getData(String,String)","event":"Start"}
+10:03:43.636 [http-nio-7002-exec-1] DEBUG eventLog - {"args":["akshay"],"method":"TestModel com.example.TesterApp.serviceimpl.TestService.getData(String)","event":"Start"}
+10:03:43.648 [http-nio-7002-exec-1] DEBUG eventLog - {"args":["akshay"],"method":"TestModel com.example.TesterApp.repository.TestRepoInterface.findByName(String)","event":"Start"}
