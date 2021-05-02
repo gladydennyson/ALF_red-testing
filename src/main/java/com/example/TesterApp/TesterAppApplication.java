@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import com.example.alfred.common.AspectsConfiguration;
+import com.example.alfred.common.AlfredConfiguration;
 
 @SpringBootApplication
-@Import(AspectsConfiguration.class)
+@Import(AlfredConfiguration.class)
 public class TesterAppApplication {
 
 	public static void main(String[] args) {
