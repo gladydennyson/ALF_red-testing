@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.example.TesterApp.customexceptions.BadRequestException;
 import com.example.TesterApp.dto.DataDTO;
@@ -25,9 +24,6 @@ public class TestController {
 
 	@Autowired
 	TestServiceInterface tst;
-
-	@Autowired
-	RestTemplate rest;
 
 	@PostMapping("/v1/user/{userId}/data/submit")
 	public ResponseEntity<String> postData(@Valid @RequestBody DataDTO requestBody,
