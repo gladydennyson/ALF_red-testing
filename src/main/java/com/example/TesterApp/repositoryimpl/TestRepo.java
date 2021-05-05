@@ -22,6 +22,7 @@ public class TestRepo implements TestRepoInterface {
 	public TestModel findByName(String name) {
 		TestModel test = new TestModel();
 		test.setName("Demo");
+		test.setSsn(123456789);
 		return test;
 	}
 

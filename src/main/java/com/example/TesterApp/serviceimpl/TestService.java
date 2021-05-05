@@ -24,7 +24,7 @@ public class TestService implements TestServiceInterface {
 	 * 
 	 * @param name
 	 * @return
-	 * @throws BadRequestException 
+	 * @throws BadRequestException
 	 */
 	@Override
 	public TestModel getData(String name) throws BadRequestException {
@@ -37,13 +37,14 @@ public class TestService implements TestServiceInterface {
 	 * saves the data into the database
 	 * 
 	 * @param model
-	 * @throws BadRequestException 
+	 * @throws BadRequestException
 	 */
 	@Override
 	public void postData(DataDTO data) throws BadRequestException {
 		checkName(data.getName());
 		TestModel model = new TestModel();
 		model.setName(data.getName());
+		model.setSsn(data.getSsn());
 		testRepo.save(model);
 	}
 
@@ -51,13 +52,14 @@ public class TestService implements TestServiceInterface {
 	 * updates the data based on name
 	 * 
 	 * @param model
-	 * @throws BadRequestException 
+	 * @throws BadRequestException
 	 */
 	@Override
 	public void updateData(DataDTO data) throws BadRequestException {
 		checkName(data.getName());
 		TestModel model = new TestModel();
 		model.setName(data.getName());
+		model.setSsn(data.getSsn());
 		testRepo.update(model);
 	}
 
@@ -65,18 +67,24 @@ public class TestService implements TestServiceInterface {
 	 * deletes data based on name
 	 * 
 	 * @param name
-	 * @throws BadRequestException 
+	 * @throws BadRequestException
 	 */
 	@Override
 	public void deleteData(String name) throws BadRequestException {
 		checkName(name);
 		testRepo.delete(name);
 	}
-	
+
+	/**
+	 * validation to check if the name consists a number
+	 * 
+	 * @param name
+	 * @throws BadRequestException
+	 */
 	private void checkName(String name) throws BadRequestException {
-		if(name.matches(".*\\d+.*"))
+		if (name.matches(".*\\d+.*"))
 			throw new BadRequestException("Name cannot have a number");
-		
+
 	}
 
 }

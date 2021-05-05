@@ -19,6 +19,12 @@ public class DataDTO implements Serializable {
 	private String name;
 
 	/**
+	 * Validation
+	 */
+	@NotNull
+	private Integer ssn;
+
+	/**
 	 * getter for name
 	 * @return
 	 */
@@ -33,5 +39,21 @@ public class DataDTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	/**
+	 * getter for ssn
+	 * @return
+	 */
+	public Integer getSsn() {
+		return ssn;
+	}
+
+	/**
+	 * setter for name
+	 * @param name
+	 */
+	public void setSsn(Integer ssn) {
+		this.ssn = ssn;
+	}
+
 }
